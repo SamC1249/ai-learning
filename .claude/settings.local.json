@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install framer-motion clsx tailwind-merge)",
+      "Bash(npm install lucide-react)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
