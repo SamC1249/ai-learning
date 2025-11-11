@@ -118,7 +118,7 @@ const ModeWrapper = memo(function ModeWrapper({
     gl.setRenderTarget(buffer);
     gl.render(scene, camera);
     gl.setRenderTarget(null);
-    gl.setClearColor(0xffffff, 0); // transparent background instead of white to preserve color vibrancy
+    gl.setClearColor(0x000000, 1); // transparent background instead of white to preserve color vibrancy
   });
 
   const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps as {
@@ -146,10 +146,10 @@ const ModeWrapper = memo(function ModeWrapper({
       >
         <MeshTransmissionMaterial
           buffer={buffer.texture}
-          ior={ior ?? 1.15}
+          ior={ior ?? 1.1}
           thickness={thickness ?? 5}
           anisotropy={anisotropy ?? 0.01}
-          chromaticAberration={chromaticAberration ?? 0.1}
+          chromaticAberration={chromaticAberration ?? 0.2}
           {...(typeof extraMat === 'object' && extraMat !== null ? extraMat : {})}
         />
       </mesh>
@@ -261,20 +261,16 @@ function Images() {
   const { height } = useThree(s => s.viewport);
 
   useFrame(() => {
-    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
-    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
-    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
-    group.current.children[3].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
-    group.current.children[4].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+    group.current.children[0].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
+    group.current.children[1].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
+    group.current.children[2].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
   });
 
   return (
     <group ref={group}>
-      <Image position={[-5, 0, 0]} scale={[6, height / 1.1]} url="/images/woman_tsunami_saturated.png" />
-      <Image position={[2, 0, 3]} scale={3} url="/images/man_door.png" />
-      <Image position={[-2.05, -height, 6]} scale={[4, 6]} url="/images/galaxy_sand_laptop.png" />
-      <Image position={[-0.6, -height, 9]} scale={[4, 6]} url="/images/blue_scroll_laptop_dark.png" />
-      <Image position={[0.75, -height, 10.5]} scale={4} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[-3, -height, 9]} scale={[3, 4]} url="/images/woman_universe_introspective.png" />
+      <Image position={[0, -height, 9]} scale={[3, 4]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[3, -height, 9]} scale={[3,4]} url="/images/asian_man_universe_introspective.png" />
     </group>
   );
 }
@@ -302,11 +298,12 @@ function Typography() {
 
   return (
     <Text
+      font='/fonts/Roboto-Regular.ttf'
       position={[0, 0, 12]}
       fontSize={fontSize}
       letterSpacing={-0.05}
       outlineWidth={0}
-      outlineBlur="50%"
+      outlineBlur="10%"
       outlineColor="#000"
       outlineOpacity={0.5}
       color="white"

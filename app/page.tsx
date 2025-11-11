@@ -77,8 +77,8 @@ export default function Home() {
       lensProps={{
         scale: 0.25,
         ior: 1.15,
-        thickness: 5,
-        chromaticAberration: 0.1,
+        thickness: 3,
+        chromaticAberration: 0.2,
         anisotropy: 0.01  
       }}
       barProps={{
