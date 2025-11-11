@@ -28,7 +28,7 @@ export default function AnimatedSearchSuggestions() {
     <div className="mt-6">
       <div className="flex items-center gap-2 mb-4">
         <Sparkles className="w-4 h-4 text-neutral-400 dark:text-neutral-600" />
-        <span className="text-xs font-medium text-neutral-500 dark:text-neutral-500">
+        <span className="text-xs font-medium text-white dark:text-white">
           Try asking
         </span>
       </div>

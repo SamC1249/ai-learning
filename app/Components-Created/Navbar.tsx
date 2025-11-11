@@ -9,7 +9,8 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/95 backdrop-blur-xl border-b border-neutral-800"
+      // Remove border and make background fully transparent
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-xl"
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
@@ -17,10 +18,6 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2"
           >
-            <Brain className="w-6 h-6 text-white" />
-            <h1 className="text-xl font-semibold text-white">
-              Journey
-            </h1>
           </motion.div>
         </Link>
 
