@@ -118,7 +118,7 @@ const ModeWrapper = memo(function ModeWrapper({
     gl.setRenderTarget(buffer);
     gl.render(scene, camera);
     gl.setRenderTarget(null);
-    gl.setClearColor(0x5227ff, 1);
+    gl.setClearColor(0xffffff, 0); // transparent background instead of white to preserve color vibrancy
   });
 
   const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps as {
@@ -270,11 +270,11 @@ function Images() {
 
   return (
     <group ref={group}>
-      <Image position={[-2, 0, 0]} scale={[3, height / 1.1]} url="/assets/demo/cs1.webp" />
-      <Image position={[2, 0, 3]} scale={3} url="/assets/demo/cs2.webp" />
-      <Image position={[-2.05, -height, 6]} scale={[1, 3]} url="/assets/demo/cs3.webp" />
-      <Image position={[-0.6, -height, 9]} scale={[1, 2]} url="/assets/demo/cs1.webp" />
-      <Image position={[0.75, -height, 10.5]} scale={1.5} url="/assets/demo/cs2.webp" />
+      <Image position={[-5, 0, 0]} scale={[6, height / 1.1]} url="/images/woman_tsunami_saturated.png" />
+      <Image position={[2, 0, 3]} scale={3} url="/images/man_door.png" />
+      <Image position={[-2.05, -height, 6]} scale={[4, 6]} url="/images/galaxy_sand_laptop.png" />
+      <Image position={[-0.6, -height, 9]} scale={[4, 6]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[0.75, -height, 10.5]} scale={4} url="/images/asian_man_universe_introspective.png" />
     </group>
   );
 }
@@ -306,14 +306,14 @@ function Typography() {
       fontSize={fontSize}
       letterSpacing={-0.05}
       outlineWidth={0}
-      outlineBlur="20%"
+      outlineBlur="50%"
       outlineColor="#000"
       outlineOpacity={0.5}
       color="white"
       anchorX="center"
       anchorY="middle"
     >
-      React Bits
+      Seek Greatness
     </Text>
   );
 }
