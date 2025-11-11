@@ -9,7 +9,7 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-xl border-b border-neutral-200 dark:border-neutral-800"
+      className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/95 backdrop-blur-xl border-b border-neutral-800"
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
@@ -17,8 +17,8 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             className="flex items-center gap-2"
           >
-            <Brain className="w-6 h-6 text-neutral-900 dark:text-white" />
-            <h1 className="text-xl font-semibold text-neutral-900 dark:text-white">
+            <Brain className="w-6 h-6 text-white" />
+            <h1 className="text-xl font-semibold text-white">
               Journey
             </h1>
           </motion.div>
@@ -27,7 +27,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1">
           <Link href="/discover">
             <motion.div
-              className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors"
               whileHover={{ y: -1 }}
             >
               Discover
@@ -35,14 +35,14 @@ export default function Navbar() {
           </Link>
           <Link href="/reflect">
             <motion.div
-              className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+              className="px-4 py-2 text-sm font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors"
               whileHover={{ y: -1 }}
             >
               Reflect
             </motion.div>
           </Link>
           <motion.button
-            className="ml-2 px-5 py-2 bg-gradient-to-r from-blue-600 to-blue-500 dark:from-blue-500 dark:to-blue-400 text-white text-sm font-medium rounded-lg hover:from-blue-700 hover:to-blue-600 dark:hover:from-blue-600 dark:hover:to-blue-500 transition-all shadow-sm"
+            className="ml-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-400 text-white text-sm font-medium rounded-lg hover:from-blue-600 hover:to-blue-500 transition-all shadow-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

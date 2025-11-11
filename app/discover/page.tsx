@@ -3,7 +3,8 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Compass, Lightbulb, Target, Sparkles } from "lucide-react"
-import Navbar from "../components/Navbar"
+import Navbar from "../Components-Created/Navbar"
+import FluidGlass from "../../components/FluidGlass"
 
 export default function Discover() {
   return (
@@ -150,6 +151,28 @@ export default function Discover() {
             </motion.button>
           </motion.div>
         </div>
+      </section>
+
+      <section>
+        {/* 
+        FluidGlass visual effect component section.
+      */}
+      <section>
+        <div style={{ height: '600px', position: 'relative' }}>
+          <FluidGlass 
+            mode="lens" // or "bar", "cube"
+            lensProps={{
+              scale: 0.25,
+              ior: 1.15,
+              thickness: 3,
+              chromaticAberration: 0.2,
+              anisotropy: 0.01
+            }}
+            barProps={{}} // add specific props if using bar mode
+            cubeProps={{}} // add specific props if using cube mode
+          />
+        </div>
+      </section>
       </section>
     </div>
   )
