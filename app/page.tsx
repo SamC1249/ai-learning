@@ -116,19 +116,30 @@ export default function Home() {
               className="w-1/4"
               expandedContent={
                 <div>
-                  <Image
-                    src="/images/linear-image-1.png"
-                    alt="Window feature"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto rounded-lg mb-6"
-                  />
-                  <p className="text-gray-300">
-                    More detailed content shown only when expanded into modal.
+                  <div className="relative">
+                    <Image
+                      src="/images/linear-image-1.png"
+                      alt="Window feature"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto rounded-lg mb-6"
+                    />
+                    {/* Dark gradient at bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-180 bg-gradient-to-t from-zinc-900 to-transparent rounded-b-lg" />
+                  </div>
+                  
+                  <h1 className="text-6xl font-bold text-white mb-2 text-center pb-10">
+                    Be Different
+                  </h1>
+
+                  <p className="text-gray-300 text-sm text-center max-w-2xl mx-auto">
+                    "Being different means looking where most people aren't looking. Paul Graham says, 'The way to get new ideas is to notice anomalies: things that don't quite fit.' 
+                    Most people conform, but the people who make a difference are the ones who notice the secrets hiding in plain sight, and have the courage to act on them before the rest of the world wakes up. 
+                    Don't just blend in—look for the edges, question assumptions, and let your curiosity lead you where others might hesitate to go."
+                    <br />
+                    <br />
+                    Modern LLMs suffer from conforming to their user's thoughts. We create intelligence that dares to think contrarian and radically.
                   </p>
-                  <button className="mt-4 px-4 py-2 bg-blue-600 rounded-lg text-white">
-                    Action Button
-                  </button>
                 </div>
               }
             >
@@ -147,19 +158,30 @@ export default function Home() {
               className="w-1/4"
               expandedContent={
                 <div>
-                  <Image
-                    src="/images/linear-image-2.png"
-                    alt="Files feature"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto rounded-lg mb-6"
-                  />
-                  <p className="text-gray-300">
-                    More detailed content shown only when expanded into modal.
+                  <div className="relative">
+                    <Image
+                      src="/images/linear-image-2.png"
+                      alt="Files feature"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto rounded-lg mb-6"
+                    />
+                    {/* Dark gradient at bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-180 bg-gradient-to-t from-zinc-900 to-transparent rounded-b-lg" />
+
+                  </div>
+
+                  <h1 className="text-6xl font-bold text-white mb-2 text-center pb-10">
+                    Be Curious
+                  </h1>
+
+                  <p className="text-gray-300 text-sm text-center max-w-2xl mx-auto">
+                    As Carl Jung said: "Your visions will become clear only when you can look into your own heart. Who looks outside, dreams; who looks inside, awakes." 
+                    <br />
+                    <br />
+
+                    We want people to be curious about the world and themselves. We are on a mission to create intelligence that allows for the curiosity.
                   </p>
-                  <button className="mt-4 px-4 py-2 bg-blue-600 rounded-lg text-white">
-                    Action Button
-                  </button>
                 </div>
               }
             >
@@ -178,19 +200,32 @@ export default function Home() {
               className="w-1/4"
               expandedContent={
                 <div>
-                  <Image
-                    src="/images/linear-image-3.png"
-                    alt="Globe feature"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto rounded-lg mb-6"
-                  />
-                  <p className="text-gray-300">
-                    More detailed content shown only when expanded into modal.
+                  <div className="relative">
+
+                    <Image
+                      src="/images/linear-image-3.png"
+                      alt="Globe feature"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto rounded-lg mb-6"
+                    />
+                    {/* Dark gradient at bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-180 bg-gradient-to-t from-zinc-900 to-transparent rounded-b-lg" />
+
+                  </div>
+                  
+                  <h1 className="text-6xl font-bold text-white mb-2 text-center pb-10">
+                    Be Ambitious
+                  </h1>
+
+                  <p className="text-gray-300 text-sm text-center max-w-2xl mx-auto">
+                    As Alexander the Great once declared: "There is nothing impossible to him who will try."
+                    <br />
+                    <br />
+
+                    We believe that as intelligence accessible to everyone, the two markers of high potential people will be ambition and curiosity. We are looking to supercharge the ambitious.
+
                   </p>
-                  <button className="mt-4 px-4 py-2 bg-blue-600 rounded-lg text-white">
-                    Action Button
-                  </button>
                 </div>
               }
             >

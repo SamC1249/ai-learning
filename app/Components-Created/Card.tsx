@@ -108,7 +108,7 @@ export default function Card({ title, description, className = "", children, exp
         className={`bg-zinc-900 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:bg-zinc-800 hover:shadow-lg hover:shadow-zinc-900/50 hover:-translate-y-1 ${className}`}
       >
         <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-        <p className="text-gray-300">{description}</p>
+        <p className="text-gray-300 text-sm">{description}</p>
         {children}
       </div>
 
@@ -141,31 +141,23 @@ export default function Card({ title, description, className = "", children, exp
             <X size={28} />
           </button>
 
-          {/* Morphing content - text sizes animate between card and modal */}
-          <div className="transition-all duration-500 ease-out">
-            <h2
-              className={`font-bold text-white transition-all duration-500 ease-out ${
-                isExpanded ? "text-3xl mb-4 pt-2" : "text-xl mb-2 pt-0"
-              }`}
-            >
-              {title}
-            </h2>
-            <p
-              className={`text-gray-300 transition-all duration-500 ease-out ${
-                isExpanded ? "text-lg mb-6" : "text-base mb-0"
-              }`}
-            >
-              {description}
-            </p>
+          {/* Card content - visible when closing (for smooth animation back to card) */}
+          <div
+            className={`transition-all duration-300 ${
+              isExpanded ? "opacity-0 absolute pointer-events-none" : "opacity-100"
+            }`}
+          >
+            <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+            <p className="text-gray-300 text-sm">{description}</p>
+          </div>
 
-            {/* Expanded-only content fades in/out */}
-            <div
-              className={`transition-all duration-300 ${
-                isExpanded && !isClosing ? "opacity-100 max-h-[2000px] delay-200" : "opacity-0 max-h-0 overflow-hidden"
-              }`}
-            >
-              {expandedContent || children}
-            </div>
+          {/* Expanded content - 100% customizable, only visible when expanded */}
+          <div
+            className={`transition-all duration-300 ${
+              isExpanded && !isClosing ? "opacity-100 delay-200" : "opacity-0 max-h-0 overflow-hidden"
+            }`}
+          >
+            {expandedContent}
           </div>
         </div>
       )}
