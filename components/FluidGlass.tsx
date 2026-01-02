@@ -44,12 +44,12 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, barProps = {
   } = rawOverrides;
 
   return (
-    <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true }}>
-      <ScrollControls damping={0.2} pages={3} distance={0.4}>
+    <Canvas camera={{ position: [0, 0, 20], fov: 30 }} gl={{ alpha: true }}>
+      <ScrollControls damping={0.2} pages={1.5} distance={0.2}>
         {mode === 'bar' && <NavItems items={navItems as NavItem[]} />}
         <Wrapper modeProps={modeProps}>
           <Scroll>
-            <Typography />
+            {/* <Typography /> */}
             <Images />
           </Scroll>
           <Scroll html />
@@ -264,17 +264,42 @@ function Images() {
     group.current.children[0].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
     group.current.children[1].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
     group.current.children[2].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
+    group.current.children[3].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
+    group.current.children[4].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
+    group.current.children[5].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
+    group.current.children[6].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
+    group.current.children[7].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
+    group.current.children[8].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
+    group.current.children[9].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
+    group.current.children[10].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
+    group.current.children[11].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
+    group.current.children[12].material.zoom = 1 + data.range(0.5 / 3, 1 / 3) / 2;
+    group.current.children[13].material.zoom = 1 + data.range(1 / 3, 1 / 3) / 2;
+    group.current.children[14].material.zoom = 1 + data.range(1.5 / 3, 1 / 3) / 2;
   });
 
   return (
     <group ref={group}>
-      <Image position={[-3, -height, 9]} scale={[3, 4]} url="/images/woman_universe_introspective.png" />
-      <Image position={[0, -height, 9]} scale={[3, 4]} url="/images/blue_scroll_laptop_dark.png" />
-      <Image position={[3, -height, 9]} scale={[3,4]} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[-7, -height *0.3, 9]} scale={[1, 2]} url="/images/woman_universe_introspective.png" />
+      <Image position={[-6, -height *0.3, 9]} scale={[1, 2]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[-5, -height *0.3, 9]} scale={[1, 2]} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[-4, -height *0.3, 9]} scale={[1, 2]} url="/images/woman_universe_introspective.png" />
+      <Image position={[-3, -height *0.3, 9]} scale={[1, 2]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[-2, -height *0.3, 9]} scale={[1, 2]} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[-1, -height *0.3, 9]} scale={[1, 2]} url="/images/woman_universe_introspective.png" />
+      <Image position={[0, -height *0.3, 9]} scale={[1, 2]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[1, -height *0.3, 9]} scale={[1, 2]} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[2, -height *0.3, 9]} scale={[1, 2]} url="/images/woman_universe_introspective.png" />
+      <Image position={[3, -height *0.3, 9]} scale={[1, 2]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[4, -height *0.3, 9]} scale={[1, 2]} url="/images/asian_man_universe_introspective.png" />
+      <Image position={[5, -height *0.3, 9]} scale={[1, 2]} url="/images/woman_universe_introspective.png" />
+      <Image position={[6, -height *0.3, 9]} scale={[1, 2]} url="/images/blue_scroll_laptop_dark.png" />
+      <Image position={[7, -height *0.3, 9]} scale={[1, 2]} url="/images/asian_man_universe_introspective.png" />
     </group>
   );
 }
 
+/*
 function Typography() {
   const DEVICE = {
     mobile: { fontSize: 0.2 },
@@ -310,7 +335,9 @@ function Typography() {
       anchorX="center"
       anchorY="middle"
     >
-      Seek Greatness
+      Text 
     </Text>
   );
 }
+
+*/
