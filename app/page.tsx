@@ -95,7 +95,8 @@ export default function Home() {
       </section>
       */}
 
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-black">
+      {/* Section 2: Your Advantage */}
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
         <div className="w-full h-[80vh]">
           <div className="flex items-center justify-start pl-30">
             <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
@@ -246,6 +247,53 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* Section 3: Think Daringly - Product Information*/}
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
+        <div className="w-full h-[80vh]">
+          <div className="flex items-center justify-start pl-30">
+            <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+              Think Daringly
+            </h1>
+          </div>
+        </div>
+
+      </section>
+
+
+      {/* Section 4: Use Cases */}
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
+
+        <div className="w-full h-[80vh]">
+          <div className="flex items-center justify-start pl-30">
+            <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+              World Class Talent at Your Fingertips
+            </h1>
+          </div>
+        </div>
+      </section>
+
+       {/* Section 5: Technology */}
+       <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
+
+      <div className="w-full h-[80vh]">
+        <div className="flex items-center justify-start pl-30">
+          <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+            World Class Talent at Your Fingertips
+          </h1>
+        </div>
+      </div>
+      </section>
+
+      {/* Section 6: CTA */}
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-white">
+
+      <div className="w-full h-[80vh]">
+        <div className="flex items-center justify-start pl-30">
+        </div>
+      </div>
+      </section>
+
 
 
   </div>
