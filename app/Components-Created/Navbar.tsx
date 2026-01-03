@@ -39,7 +39,7 @@ export default function Navbar() {
             </motion.div>
           </Link>
           <motion.button
-            className="ml-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-400 text-white text-sm font-medium rounded-lg hover:from-blue-600 hover:to-blue-500 transition-all shadow-sm"
+              className="ml-2 px-5 py-2 bg-gradient-to-r from-blue-900 to-blue-800 text-white text-sm font-medium rounded-lg hover:from-blue-900 hover:to-blue-800 transition-all shadow-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

@@ -1,22 +1,27 @@
 "use client"
 
-interface Button1Props {
+import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
+
+interface Button2Props {
   children: React.ReactNode
   onClick?: () => void
   className?: string
   type?: "button" | "submit" | "reset"
+  showIcon?: boolean
 }
 
-export default function Button1({ children, onClick, className = "", type = "button" }: Button1Props) {
+export default function Button2({ children, onClick, className = "", type = "button", showIcon = false }: Button2Props) {
   return (
-    <button
+    <motion.button
       type={type}
       onClick={onClick}
-      className={`px-6 py-3 bg-gray-600 rounded-lg transition-all duration-300 hover:bg-gray-500 ${className}`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className={`px-6 py-2.5 bg-gradient-to-r from-blue-900 to-blue-800 text-white rounded-lg font-medium text-sm hover:from-blue-800 hover:to-blue-700 transition-all flex items-center gap-2 shadow-sm ${className}`}
     >
-      <span className="text-white font-medium">
-        {children}
-      </span>
-    </button>
+      {children}
+      {showIcon && <ArrowRight className="w-4 h-4" />}
+    </motion.button>
   )
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Search, ArrowRight } from "lucide-react"
+import { Search } from "lucide-react"
 import Navbar from "./Components-Created/Navbar"
 import AnimatedSearchSuggestions from "./Components-Created/AnimatedSearchSuggestions"
 import FluidGlass from '../components/FluidGlass'
@@ -10,7 +10,9 @@ import ColorBends from '../components/ColorBends';
 import Card from "./Components-Created/Card"
 import Button1 from "./Components-Created/button-1"
 import Button2 from "./Components-Created/button-2"
-
+import Iridescence from '../components/Iridescence'
+import Footer from "./Components-Created/Footer"
+import CardSwap from "../components/CardSwap"
 
 export default function Home() {
   return (
@@ -68,14 +70,12 @@ export default function Home() {
                 placeholder="Ask yourself anything..."
                 className="w-full pl-14 pr-32 py-4 bg-black/80 border border-neutral-700 rounded-xl text-white placeholder-neutral-400 focus:outline-none transition-all shadow-sm"
               />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-medium text-sm hover:from-blue-700 hover:to-blue-600 transition-all flex items-center gap-2 shadow-sm"
+              <Button2 
+                className="absolute right-2 top-1/2 -translate-y-1/2" 
+                showIcon
               >
                 Search
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              </Button2>
             </div>
 
             <AnimatedSearchSuggestions />
@@ -249,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* Section 3: Think Daringly - Product Information*/}
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
         <div className="w-full h-[80vh]">
           <div className="flex items-center justify-start pl-30">
             <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
@@ -258,6 +258,47 @@ export default function Home() {
           </div>
         </div>
 
+        {/* CardSwap container - needs relative parent for absolute positioning */}
+        <div className="relative w-[600px] h-[400px]">
+          <CardSwap
+            width={400}
+            height={300}
+            delay={4000}
+            pauseOnHover={true}
+            cardDistance={40}
+            verticalDistance={50}
+            skewAmount={4}
+            onCardClick={(index: number) => console.log(`Card ${index} clicked`)}
+          >
+            <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Contrarian Analysis</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Modern LLMs conform to their user&apos;s thoughts. We create intelligence that dares to think contrarian and radically.
+                </p>
+              </div>
+              <p className="text-blue-400 text-sm font-medium mt-6">Challenge assumptions →</p>
+            </div>
+            <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Historical Wisdom</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Learn from the greatest minds in history. From Alexander to Jung, access timeless insights for modern challenges.
+                </p>
+              </div>
+              <p className="text-blue-400 text-sm font-medium mt-6">Explore the past →</p>
+            </div>
+            <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Deep Introspection</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Who looks outside, dreams; who looks inside, awakes. Discover insights about yourself through guided reflection.
+                </p>
+              </div>
+              <p className="text-blue-400 text-sm font-medium mt-6">Look within →</p>
+            </div>
+          </CardSwap>
+        </div>
       </section>
 
 
@@ -286,15 +327,31 @@ export default function Home() {
       </section>
 
       {/* Section 6: CTA */}
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-white">
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
 
-      <div className="w-full h-[80vh]">
-        <div className="flex items-center justify-start pl-30">
+      <div className="relative w-[60%] h-[400px] rounded-3xl overflow-hidden">        
+        <div className="absolute inset-0 z-0 ">
+          <Iridescence
+            color={[0.7, 0.7, 0.7]}
+            mouseReact={true}
+            amplitude={0.1}
+            speed={1.0}
+          />
         </div>
-      </div>
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+          <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white text-center tracking-tight">
+            Build the Future
+          </h1>
+          <div className="flex items-center justify-center gap-4">
+            <Button1> Talk to Sales </Button1>
+            <Button2 className="!py-3 !text-base"> Get Started</Button2>
+          </div>
+        </div>
+      </div>  
       </section>
 
-
+      {/* Footer */}
+      <Footer />
 
   </div>
 
