@@ -295,10 +295,16 @@ export default function Home() {
       {/* Section 3: Think Daringly - Product Information*/}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
         <div className="w-full h-[80vh]">
-          <div className="flex items-center justify-start pl-30">
+          <div className="pl-30">
             <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
               Think Daringly
             </h1>
+            <p className="text-gray-400 text-24 leading-relaxed mt-2 w-[500px]">
+              <span className="text-white font-bold">
+                Journey for ideas. 
+              </span>{" "}
+              We lead you to the answers you seek. The platform keeps memory of previous conversations, analyzes conversations, and maintains ideas that have shaped human history.
+            </p>
           </div>
 
           {/* Single Large TiltedCard with Navigation */}
@@ -316,7 +322,7 @@ export default function Home() {
               </motion.button>
 
               {/* Card Container */}
-              <div className="relative w-[520px] h-[520px]">
+              <div className="relative w-[600px] h-[400px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentCardIndex}
@@ -329,10 +335,10 @@ export default function Home() {
                     <TiltedCard
                       imageSrc={tiltedCardData[currentCardIndex].imageSrc}
                       altText={tiltedCardData[currentCardIndex].altText}
-                      containerHeight="520px"
-                      containerWidth="520px"
-                      imageHeight="520px"
-                      imageWidth="520px"
+                      containerHeight="400px"
+                      containerWidth="600px"
+                      imageHeight="400px"
+                      imageWidth="600px"
                       rotateAmplitude={10}
                       scaleOnHover={1.05}
                       showMobileWarning={false}
@@ -356,7 +362,7 @@ export default function Home() {
             </div>
 
             {/* Card Indicators - Below the card */}
-            <div className="flex gap-2 justify-center mt-6" style={{ marginLeft: '46px', width: '520px' }}>
+            <div className="flex gap-2 justify-center mt-6" style={{ marginLeft: '46px', width: '600px' }}>
               {tiltedCardData.map((_, index) => (
                 <button
                   key={index}
