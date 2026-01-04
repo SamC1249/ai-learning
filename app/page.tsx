@@ -1,8 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { Search } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Search, ChevronLeft, ChevronRight } from "lucide-react"
 import Navbar from "./Components-Created/Navbar"
 import AnimatedSearchSuggestions from "./Components-Created/AnimatedSearchSuggestions"
 import FluidGlass from '../components/FluidGlass'
@@ -13,8 +14,51 @@ import Button2 from "./Components-Created/button-2"
 import Iridescence from '../components/Iridescence'
 import Footer from "./Components-Created/Footer"
 import CardSwap from "../components/CardSwap"
+import TiltedCard from "../components/TiltedCard"
+
+const tiltedCardData = [
+  {
+    imageSrc: "/images/linear-image-1.png",
+    altText: "Strategic Planning",
+    overlayText: "Strategy",
+  },
+  {
+    imageSrc: "/images/linear-image-2.png",
+    altText: "Deep Research",
+    overlayText: "Research",
+  },
+  {
+    imageSrc: "/images/linear-image-3.png",
+    altText: "Innovation",
+    overlayText: "Innovation",
+  },
+  {
+    imageSrc: "https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58",
+    altText: "Kendrick Lamar - GNX",
+    overlayText: "Inspiration",
+  },
+  {
+    imageSrc: "/images/linear-image-1.png",
+    altText: "Analysis",
+    overlayText: "Analysis",
+  },
+  {
+    imageSrc: "/images/linear-image-2.png",
+    altText: "Wisdom",
+    overlayText: "Wisdom",
+  },
+];
 
 export default function Home() {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+
+  const goToPrevCard = () => {
+    setCurrentCardIndex((prev) => (prev === 0 ? tiltedCardData.length - 1 : prev - 1));
+  };
+
+  const goToNextCard = () => {
+    setCurrentCardIndex((prev) => (prev === tiltedCardData.length - 1 ? 0 : prev + 1));
+  };
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
@@ -256,6 +300,75 @@ export default function Home() {
               Think Daringly
             </h1>
           </div>
+
+          {/* Single Large TiltedCard with Navigation */}
+          <div className="flex flex-col pl-30 mt-8">
+            {/* Card Row with Navigation Buttons */}
+            <div className="flex items-center gap-6">
+              {/* Left Navigation Button */}
+              <motion.button
+                onClick={goToPrevCard}
+                className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </motion.button>
+
+              {/* Card Container */}
+              <div className="relative w-[520px] h-[520px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentCardIndex}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <TiltedCard
+                      imageSrc={tiltedCardData[currentCardIndex].imageSrc}
+                      altText={tiltedCardData[currentCardIndex].altText}
+                      containerHeight="520px"
+                      containerWidth="520px"
+                      imageHeight="520px"
+                      imageWidth="520px"
+                      rotateAmplitude={10}
+                      scaleOnHover={1.05}
+                      showMobileWarning={false}
+                      showTooltip={false}
+                      displayOverlayContent={true}
+                      overlayContent={<p className="tilted-card-demo-text">{tiltedCardData[currentCardIndex].overlayText}</p>}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Right Navigation Button */}
+              <motion.button
+                onClick={goToNextCard}
+                className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+
+            {/* Card Indicators - Below the card */}
+            <div className="flex gap-2 justify-center mt-6" style={{ marginLeft: '46px', width: '520px' }}>
+              {tiltedCardData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentCardIndex(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentCardIndex ? "bg-white w-6" : "bg-zinc-600 hover:bg-zinc-500 w-2"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* CardSwap container - needs relative parent for absolute positioning */}
