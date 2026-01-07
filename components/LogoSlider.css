@@ -1,0 +1,139 @@
+.logo-slider-container {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  background: transparent;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.logo-slider-track {
+  display: flex;
+  gap: 4rem;
+  animation: slide 30s linear infinite;
+  width: max-content;
+}
+
+.logo-slider-track.paused {
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo-item:hover {
+  transform: scale(1.1);
+}
+
+.logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover .logo-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.logo-image {
+  filter: invert(1) grayscale(100%) brightness(1);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+  object-fit: contain;
+  height: 48px;
+  width: auto;
+}
+
+.logo-item:hover .logo-image {
+  filter: invert(1) grayscale(0%) brightness(1.2);
+  opacity: 1;
+}
+
+.logo-item.active .logo-image {
+  filter: invert(1) grayscale(0%) brightness(1.2);
+  opacity: 1;
+}
+
+/* Shine overlay effect */
+.shine-overlay {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logo-item:hover .shine-overlay {
+  opacity: 1;
+  animation: shine 0.8s ease-in-out;
+}
+
+.logo-item.active .shine-overlay {
+  opacity: 1;
+  animation: shine 0.8s ease-in-out;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-slider-track {
+    gap: 2rem;
+    animation-duration: 20s;
+  }
+
+  .logo-wrapper {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .logo-image {
+    height: 36px;
+  }
+}

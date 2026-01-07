@@ -36,6 +36,8 @@ export default function Card({ title, description, className = "", children, exp
         height: rect.height,
       })
     }
+    // Lock body scroll when modal opens
+    document.body.style.overflow = 'hidden'
     setIsAnimating(true)
     setIsClosing(false)
     // Small delay to ensure the initial position is set before animating
@@ -62,6 +64,8 @@ export default function Card({ title, description, className = "", children, exp
           setIsAnimating(false)
           setIsClosing(false)
           setCardRect(null)
+          // Restore body scroll when modal fully closes
+          document.body.style.overflow = ''
         }, 500)
       }, scrollDuration)
     } else {
@@ -70,6 +74,8 @@ export default function Card({ title, description, className = "", children, exp
       setTimeout(() => {
         setIsAnimating(false)
         setCardRect(null)
+        // Restore body scroll when modal fully closes
+        document.body.style.overflow = ''
       }, 500)
     }
   }

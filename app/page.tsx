@@ -15,6 +15,7 @@ import Iridescence from '../components/Iridescence'
 import Footer from "./Components-Created/Footer"
 import CardSwap from "../components/CardSwap"
 import TiltedCard from "../components/TiltedCard"
+import LogoSlider from "../components/LogoSlider"
 
 const tiltedCardData = [
   {
@@ -421,20 +422,45 @@ export default function Home() {
       </section>
 
 
-      {/* Section 4: Use Cases */}
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
-
-        <div className="w-full h-[80vh]">
-          <div className="flex items-center justify-start pl-30">
-            <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
-              World Class Talent at Your Fingertips
-            </h1>
+       {/* Section 4: Trusted By */}
+       <section className="relative flex flex-col items-center justify-center overflow-hidden py-20 bg-black">
+        <div className="w-full">
+          <div className="flex flex-col items-center justify-center mb-8">
+            <p className="text-sm uppercase tracking-[0.3em] text-zinc-500 mb-2">
+              Trusted by industry leaders
+            </p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight">
+              Powering the world&apos;s best teams
+            </h2>
           </div>
+          <LogoSlider />
         </div>
       </section>
 
        {/* Section 5: Technology */}
-       <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
+       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
+
+      <div className="w-full h-[80vh]">
+        <div className="flex items-center justify-start pl-30">
+          <h1 className="text-5xl md:text-5xl font-bold mb-6 text-white tracking-tight">
+            World Class Talent at Your Fingertips
+          </h1>
+        </div>
+        <div className="flex items-center justify-start pl-30">
+          <p className='text-gray-400 text-24 leading-relaxed mt-2 w-[500px]'>
+            <span className="text-white font-bold">
+              Search for truth.  
+            </span>
+            {" "}When you ask intelligent models your most important questions, you want an answer is grounded in reasoning: 
+            This is not latent reasoning nor chain of thought, but ideas grounded
+            in all of human history and scientific discovery.
+          </p>
+        </div>
+      </div>
+      </section>
+
+       {/* Section 6: Technology */}
+       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-b from-zinc-900 to-black">
 
       <div className="w-full h-[80vh]">
         <div className="flex items-center justify-start pl-30">
@@ -445,7 +471,7 @@ export default function Home() {
       </div>
       </section>
 
-      {/* Section 6: CTA */}
+      {/* Section 7: CTA */}
       <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
 
       <div className="relative w-[60%] h-[400px] rounded-3xl overflow-hidden">        
