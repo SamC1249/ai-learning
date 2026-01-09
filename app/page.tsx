@@ -174,11 +174,12 @@ export default function Home() {
             </motion.a>
           </motion.div>
 
-          <div className="flex-1 flex items-center justify-center pt-16 gap-4">
-            <Card
+          {/* Card Grid with special styling so that the cards are spaced well even with resizing*/}
+          <div className="pt-16 mx-auto w-full max-w-6xl grid gap-4 justify-items-center [grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))]">
+          <Card
               title="Be Different"
               description="The world is filled with mediocrity. To be great, you need to be different."
-              className="w-1/4"
+              className="w-full max-w-sm"
               expandedContent={
                 <div>
                   <div className="relative">
@@ -220,7 +221,7 @@ export default function Home() {
             <Card
               title="Be Curious"
               description="Embrace constant learning, failure, and pivoting."
-              className="w-1/4"
+              className="w-full max-w-sm"
               expandedContent={
                 <div>
                   <div className="relative">
@@ -262,7 +263,7 @@ export default function Home() {
             <Card
               title="Be Ambitious"
               description="Too many people wait to do something great. Time is ticking."
-              className="w-1/4"
+              className="w-full max-w-sm"
               expandedContent={
                 <div>
                   <div className="relative">
@@ -304,10 +305,6 @@ export default function Home() {
             </Card>
            
           </div>
-
-
-
-
 
         </div>
       </section>
