@@ -311,27 +311,34 @@ export default function Home() {
 
       {/* Section 3: Think Daringly - Product Information*/}
       <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
-          {/* Header with animated style */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="pt-24 px-8 lg:px-16 max-w-7xl mx-auto mb-8"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
-              Think Daringly
-            </h1>
-            <div className="max-w-xl">
-              <p className="text-gray-300 text-lg leading-relaxed">
-                <span className="text-white font-semibold">Journey for ideas.</span>
-                {" "}We lead you to the answers you seek. The platform keeps memory of previous conversations, analyzes conversations, and maintains ideas that have shaped human history.
-              </p>
-            </div>
-          </motion.div>
+        {/* Header with animated style */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="pt-24 px-8 lg:px-16 max-w-7xl mx-auto mb-8"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+            Think Daringly
+          </h1>
+          <div className="max-w-xl">
+            <p className="text-gray-300 text-lg leading-relaxed">
+              <span className="text-white font-semibold">Journey for ideas.</span>{" "}
+              We lead you to the answers you seek. The platform keeps memory of previous
+              conversations, analyzes conversations, and maintains ideas that have shaped
+              human history.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Wrapper for TiltedCard + CardSwap with bottom padding + bottom gradient overlay */}
+        <div className="relative px-8 lg:px-16 max-w-7xl mx-auto mt-8 pb-24">
+          {/* Bottom gradient overlay */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
           {/* TiltedCard and CardSwap side by side */}
-          <div className="flex items-start gap-8 px-8 lg:px-16 max-w-7xl mx-auto mt-8">
+          <div className="flex items-start">
             {/* Single Large TiltedCard with Navigation */}
             <div className="flex flex-col">
               {/* Card Row with Navigation Buttons */}
@@ -369,7 +376,11 @@ export default function Home() {
                         showMobileWarning={false}
                         showTooltip={false}
                         displayOverlayContent={true}
-                        overlayContent={<p className="tilted-card-demo-text">{tiltedCardData[currentCardIndex].overlayText}</p>}
+                        overlayContent={
+                          <p className="tilted-card-demo-text">
+                            {tiltedCardData[currentCardIndex].overlayText}
+                          </p>
+                        }
                       />
                     </motion.div>
                   </AnimatePresence>
@@ -387,13 +398,18 @@ export default function Home() {
               </div>
 
               {/* Card Indicators - Below the card */}
-              <div className="flex gap-2 justify-center mt-6" style={{ marginLeft: '46px', width: '600px' }}>
+              <div
+                className="flex gap-2 justify-center mt-6"
+                style={{ marginLeft: "46px", width: "600px" }}
+              >
                 {tiltedCardData.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentCardIndex(index)}
                     className={`h-2 rounded-full transition-all ${
-                      index === currentCardIndex ? "bg-white w-6" : "bg-zinc-600 hover:bg-zinc-500 w-2"
+                      index === currentCardIndex
+                        ? "bg-white w-6"
+                        : "bg-zinc-600 hover:bg-zinc-500 w-2"
                     }`}
                   />
                 ))}
@@ -403,8 +419,8 @@ export default function Home() {
             {/* CardSwap container - needs relative parent for absolute positioning */}
             <div className="relative w-[600px] h-[400px]">
               <CardSwap
-                width={400}
-                height={300}
+                width={600}
+                height={400}
                 delay={4000}
                 pauseOnHover={true}
                 cardDistance={40}
@@ -416,25 +432,30 @@ export default function Home() {
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-4">Contrarian Analysis</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Modern LLMs conform to their user&apos;s thoughts. We create intelligence that dares to think contrarian and radically.
+                      Modern LLMs conform to their user&apos;s thoughts. We create intelligence
+                      that dares to think contrarian and radically.
                     </p>
                   </div>
                   <p className="text-blue-400 text-sm font-medium mt-6">Challenge assumptions →</p>
                 </div>
+
                 <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-4">Historical Wisdom</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Learn from the greatest minds in history. From Alexander to Jung, access timeless insights for modern challenges.
+                      Learn from the greatest minds in history. From Alexander to Jung, access
+                      timeless insights for modern challenges.
                     </p>
                   </div>
                   <p className="text-blue-400 text-sm font-medium mt-6">Explore the past →</p>
                 </div>
+
                 <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-4">Deep Introspection</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">
-                      Who looks outside, dreams; who looks inside, awakes. Discover insights about yourself through guided reflection.
+                      Who looks outside, dreams; who looks inside, awakes. Discover insights
+                      about yourself through guided reflection.
                     </p>
                   </div>
                   <p className="text-blue-400 text-sm font-medium mt-6">Look within →</p>
@@ -442,7 +463,9 @@ export default function Home() {
               </CardSwap>
             </div>
           </div>
+        </div>
       </section>
+
 
 
        {/* Section 4: Trusted By */}
@@ -461,8 +484,8 @@ export default function Home() {
       </section>
 
        {/* Section 5: Technology */}
-       <section className="relative min-h-screen overflow-hidden bg-black">
-          {/* Header */}
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
+       {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -506,7 +529,7 @@ export default function Home() {
                 className="relative flex justify-center overflow-hidden"
                 style={{
                   perspective: "1000px",
-                  marginTop: "-160px",
+                  marginTop: "-200px",
                 }}
               >
                 <Image
@@ -530,11 +553,13 @@ export default function Home() {
                   }}
                 >
                   {/* Bottom blur - lighter */}
-                  <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-50 bg-gradient-to-t from-black via black/60 to-transparent" />
                   {/* Left blur */}
                   <div className="absolute top-0 bottom-0 left-0 w-40 bg-gradient-to-r from-black via-black/60 to-transparent" />
                   {/* Right blur */}
                   <div className="absolute top-0 bottom-0 right-0 w-40 bg-gradient-to-l from-black via-black/60 to-transparent" />
+                  {/* Top blur */}
+                  <div className="absolute top-0 left-0 right-0 h-70 bg-gradient-to-b from-black via black/60 to-transparent" />
                 </div>
 
                 {/* Assign to dropdown - positioned at bottom right corner of image with overlap */}
@@ -620,28 +645,18 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-        </section>
+      </section>
 
-        {/* Section 6: Extended Showcase */}
-        <FeatureShowcase
-          title="Wisdom from the Ages"
-          highlightText="Timeless insights."
-          description="Access philosophical frameworks and historical perspectives that have guided humanity for millennia."
-          variant="dark"
-          mainContent={
-            <PlaceholderImage className="max-w-2xl mx-auto" />
-          }
-          leftPanel={{
-            title: "Historical Analysis",
-            description: "Dive deep into the teachings of history's greatest minds. From Stoic philosophy to Eastern wisdom traditions.",
-            content: <PlaceholderImage />
-          }}
-          rightPanel={{
-            title: "Modern Applications",
-            description: "Apply ancient wisdom to contemporary challenges. Bridge the gap between timeless principles and modern life.",
-            content: <PlaceholderImage />
-          }}
-        />
+
+      {/* Section 6: Extended Showcase */}
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
+      <div className="w-full h-[80vh]">
+
+      </div>
+
+
+
+      </section>
 
       {/* Section 7: CTA */}
       <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
