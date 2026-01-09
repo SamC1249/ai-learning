@@ -17,6 +17,9 @@ import CardSwap from "../components/CardSwap"
 import TiltedCard from "../components/TiltedCard"
 import LogoSlider from "../components/LogoSlider"
 import FeatureShowcase, { DropdownShowcase, CodeSnippet, PlaceholderImage } from "./Components-Created/FeatureShowcase"
+import GraphSnapshotCard from "./Components-Created/GraphSnapshotCard"
+import CodeOutputCard from "./Components-Created/CodeOutputCard"
+import PoemDisplay from "./Components-Created/PoemDisplay"
 
 const tiltedCardData = [
   {
@@ -53,6 +56,7 @@ const tiltedCardData = [
 
 export default function Home() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isGraphHovered, setIsGraphHovered] = useState(false);
 
   const goToPrevCard = () => {
     setCurrentCardIndex((prev) => (prev === 0 ? tiltedCardData.length - 1 : prev - 1));
@@ -606,177 +610,18 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                   Personal Knowledge Graphs
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                <p className="text-gray-500 text-lg leading-relaxed mb-6">
                   Your conversations become structured, queryable memory—nodes, edges, and evolving hypotheses you can inspect and refine.
-                  Click the graph to open a live snapshot.
+                  Hover over the graph to open a live snapshot.
                 </p>
 
-                {/* Clickable knowledge graph preview (smooth open/close) */}
-                <details className="group relative">
-                  <summary className="list-none cursor-pointer select-none">
-                    <div className="relative overflow-hidden rounded-lg bg-zinc-950/50 border border-zinc-800/50">
-                      <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-zinc-800/50">
-                        <span className="text-xs text-zinc-600">Knowledge Graph</span>
-                        <span className="text-xs text-zinc-500">
-                          <span className="group-open:hidden">Click to inspect →</span>
-                          <span className="hidden group-open:inline">Click to close ✕</span>
-                        </span>
-                      </div>
-
-                      <div className="p-4">
-                        <Image
-                          src="/images/Knowledge-graph.svg"
-                          alt="Knowledge graph"
-                          width={900}
-                          height={520}
-                          className="w-full h-auto rounded-md opacity-90"
-                        />
-                      </div>
-                    </div>
-                  </summary>
-
-                  {/* Page-level overlay + animated floating card (less snappy) */}
-                  <div className="fixed inset-0 z-[80] pointer-events-none">
-                    {/* Dim background (fades in/out) */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ease-out group-open:opacity-100" />
-
-                    {/* Floating "Graph snapshot" card: left of center, slightly below center */}
-                    <div
-                      className="
-                        absolute left-[10%] top-[56%] w-[min(520px,88vw)]
-                        pointer-events-auto
-                        opacity-0 translate-y-4 scale-[0.98]
-                        transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
-                        group-open:opacity-100 group-open:translate-y-0 group-open:scale-100
-                      "
-                    >
-                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/90 backdrop-blur-md shadow-2xl shadow-black/40 overflow-hidden">
-                        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800/60">
-                          <div className="flex items-center gap-2">
-                            <span className="text-zinc-600">✦</span>
-                            <span className="text-xs text-zinc-200">Graph snapshot</span>
-                          </div>
-                          <span className="text-[11px] text-zinc-500 font-mono">user_id: 7f3a2c</span>
-                        </div>
-
-                        <div className="p-4 space-y-3">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-xs text-zinc-600">entities</span>
-                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">curiosity</span>
-                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">writing</span>
-                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">consistency</span>
-                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">time_fear</span>
-                          </div>
-
-                          <div className="flex items-center gap-3">
-                            <span className="text-xs text-zinc-600">active_threads</span>
-                            <span className="text-xs text-blue-400/80">identity → habits → meaning</span>
-                          </div>
-
-                          {/* Colored "code" panel */}
-                          <div className="rounded-xl border border-zinc-800/60 overflow-hidden bg-gradient-to-b from-zinc-950 to-black">
-                            <div className="px-4 py-2 border-b border-zinc-800/60 flex items-center justify-between">
-                              <span className="text-xs text-zinc-500 font-mono">// graph.query</span>
-                              <span className="text-[11px] text-emerald-400/70 font-mono">ok</span>
-                            </div>
-
-                            <pre className="p-4 text-sm overflow-x-auto">
-                              <code className="font-mono whitespace-pre">
-                                <span className="text-zinc-500">{`{`}</span>
-                                {"\n"}
-                                <span className="text-sky-400">{`  "user_id"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"7f3a2c"`}</span>
-                                <span className="text-zinc-500">{`,`}</span>
-                                {"\n"}
-                                <span className="text-sky-400">{`  "nodes"`}</span>
-                                <span className="text-zinc-500">{`: [`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`    { `}</span>
-                                <span className="text-sky-400">{`"type"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"trait"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"id"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"curiosity"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"weight"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-emerald-300">{`0.82`}</span>
-                                <span className="text-zinc-500">{` }`}</span>
-                                <span className="text-zinc-500">{`,`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`    { `}</span>
-                                <span className="text-sky-400">{`"type"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"goal"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"id"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"write_daily"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"weight"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-emerald-300">{`0.66`}</span>
-                                <span className="text-zinc-500">{` }`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`  ],`}</span>
-                                {"\n"}
-                                <span className="text-sky-400">{`  "edges"`}</span>
-                                <span className="text-zinc-500">{`: [`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`    { `}</span>
-                                <span className="text-sky-400">{`"from"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"curiosity"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"to"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-amber-300">{`"write_daily"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-sky-400">{`"relation"`}</span>
-                                <span className="text-zinc-500">{`: `}</span>
-                                <span className="text-purple-300">{`"supports"`}</span>
-                                <span className="text-zinc-500">{` }`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`  ],`}</span>
-                                {"\n"}
-                                <span className="text-sky-400">{`  "short_term_memories"`}</span>
-                                <span className="text-zinc-500">{`: [`}</span>
-                                <span className="text-amber-300">{`"wants more consistency"`}</span>
-                                <span className="text-zinc-500">{`, `}</span>
-                                <span className="text-amber-300">{`"prefers deep work"`}</span>
-                                <span className="text-zinc-500">{`],`}</span>
-                                {"\n"}
-                                <span className="text-sky-400">{`  "suggestions"`}</span>
-                                <span className="text-zinc-500">{`: [`}</span>
-                                {"\n"}
-                                <span className="text-amber-300">{`    "Pin 1 daily reflection node",`}</span>
-                                {"\n"}
-                                <span className="text-amber-300">{`    "Auto-link repeated themes across weeks"`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`  ]`}</span>
-                                {"\n"}
-                                <span className="text-zinc-500">{`}`}</span>
-                              </code>
-                            </pre>
-                          </div>
-
-                          <div className="flex items-center justify-between pt-1">
-                            <span className="text-xs text-zinc-600">confidence</span>
-                            <span className="text-xs text-zinc-300">0.78</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Hint row */}
-                      <div className="mt-2 text-[11px] text-zinc-500">
-                        Tip: this snapshot is auto-generated from your recent conversations.
-                      </div>
-                    </div>
-                  </div>
-                </details>
+                {/* Hover-based knowledge graph preview */}
+                <div
+                  onMouseEnter={() => setIsGraphHovered(true)}
+                  onMouseLeave={() => setIsGraphHovered(false)}
+                >
+                  <GraphSnapshotCard isHovered={isGraphHovered} />
+                </div>
               </div>
 
               {/* RIGHT: Multimodality */}
@@ -784,7 +629,7 @@ export default function Home() {
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                   Multimodal Understanding
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                <p className="text-gray-500 text-lg leading-relaxed mb-6">
                   Images and text work together—summaries, reasoning, and retrieval grounded in what you show and what you say.
                   The model keeps context across modalities so your workflow feels continuous.
                 </p>
@@ -817,12 +662,160 @@ export default function Home() {
 
 
       {/* Section 6: Extended Showcase */}
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
-      <div className="w-full h-[80vh]">
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black pt-32">
+         {/* Header */}
+         <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="pt-24 px-8 lg:px-16 max-w-7xl mx-auto mb-8"
+          >
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+              Become an Expert 
+            </h1>
+            <div className="max-w-xl">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                <span className="text-white font-semibold"> Move with speed.</span>
+                {" "}The world moves fast and so should you. We are building with precision and speed in mind.
+              </p>
+            </div>
+          </motion.div>
 
-      </div>
+          {/* 2x2 Grid Container */}
+          <div className="relative w-full px-8 lg:px-16 pb-28">
+            <div className="max-w-7xl mx-auto">
+              {/* Grid with separator lines */}
+              <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0">
 
+                {/* Vertical separator line (center) */}
+                <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-zinc-800" />
 
+                {/* Horizontal separator line (center) */}
+                <div className="hidden md:block absolute left-0 right-0 top-1/2 h-px bg-zinc-800" />
+
+                {/* TOP LEFT: Stock Market */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="relative p-8 md:p-12 min-h-[500px] flex flex-col"
+                >
+                  {/* Blur gradient from left */}
+                  <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black via-black/60 to-transparent pointer-events-none z-20" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                      Market Mastery
+                    </h3>
+                    <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                      Trade markets with confidence and gain informational truth. Turn data into decisions with real-time analysis and strategic insights.
+                    </p>
+
+                    {/* Large centerpiece image with perspective tilt */}
+                    <div
+                      className="flex justify-center items-center mt-8"
+                      style={{ perspective: "1000px" }}
+                    >
+                      <img
+                        src="/images/stock-market (1).svg"
+                        alt="Stock market analysis"
+                        className="w-full max-w-xl h-auto"
+                        style={{
+                          transform: "rotateX(45deg) rotateY(-30deg)",
+                          transformOrigin: "center center"
+                        }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* TOP RIGHT: Speech & Poetry */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="relative p-8 md:p-12 min-h-[500px] flex flex-col"
+                >
+                  {/* Blur gradient from right */}
+                  <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black via-black/60 to-transparent pointer-events-none z-20" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                      Inspiring Speech
+                    </h3>
+                    <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                      Create speeches that are inspiring and powerful. Move hearts and minds with words that resonate.
+                    </p>
+
+                    {/* Poem display with image on left */}
+                    <div className="mt-8">
+                      <PoemDisplay />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* BOTTOM LEFT: Code */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="relative p-8 md:p-12 min-h-[500px] flex flex-col"
+                >
+                  {/* Blur gradient from left */}
+                  <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-black via-black/60 to-transparent pointer-events-none z-20" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                      Technical Excellence
+                    </h3>
+                    <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                      Code technically and eloquently. Transform ideas into elegant, efficient solutions that stand the test of time.
+                    </p>
+
+                    {/* Code component */}
+                    <div className="mt-8">
+                      <CodeOutputCard />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* BOTTOM RIGHT: Art */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="relative p-8 md:p-12 min-h-[500px] flex flex-col"
+                >
+                  {/* Blur gradient from right */}
+                  <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black via-black/60 to-transparent pointer-events-none z-20" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                      Creative Vision
+                    </h3>
+                    <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-md">
+                      Create art that moves and inspires. Blend imagination with technique to bring your creative vision to life.
+                    </p>
+
+                    {/* Large centerpiece image */}
+                    <div className="flex justify-center items-center mt-8">
+                      <img
+                        src="/images/art.svg"
+                        alt="Creative art"
+                        className="w-full max-w-xl h-auto"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+
+              </div>
+            </div>
+          </div>
 
       </section>
 
