@@ -142,7 +142,7 @@ export default function Home() {
       */}
 
       {/* Section 2: Your Advantage */}
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-60 bg-black">
+      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-60 bg-black">
         <div className="w-full h-[80vh]">
           {/* Header with animated style */}
           <motion.div
@@ -310,7 +310,7 @@ export default function Home() {
       </section>
 
       {/* Section 3: Think Daringly - Product Information*/}
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black pt-32">
         {/* Header with animated style */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -333,137 +333,140 @@ export default function Home() {
         </motion.div>
 
         {/* Wrapper for TiltedCard + CardSwap with bottom padding + bottom gradient overlay */}
-        <div className="relative px-8 lg:px-16 max-w-7xl mx-auto mt-8 pb-24">
-          {/* Bottom gradient overlay */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="relative px-8 lg:px-16 max-w-screen-2xl mx-auto mt-8 pb-32">
+  {/* Bottom gradient overlay */}
+  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
-          {/* TiltedCard and CardSwap side by side */}
-          <div className="flex items-start">
-            {/* Single Large TiltedCard with Navigation */}
-            <div className="flex flex-col">
-              {/* Card Row with Navigation Buttons */}
-              <div className="flex items-center gap-6">
-                {/* Left Navigation Button */}
-                <motion.button
-                  onClick={goToPrevCard}
-                  className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </motion.button>
+  {/* Aligned inner column (matches your title/header container) */}
+  <div className="max-w-7xl mx-auto">
+    <div className="flex items-start gap-48 lg:gap-48">
+      {/* Single Large TiltedCard with Navigation */}
+      <div className="flex flex-col">
+        {/* Card Row with Navigation Buttons */}
+        <div className="flex items-center gap-6">
+          {/* Left Navigation Button */}
+          <motion.button
+            onClick={goToPrevCard}
+            className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </motion.button>
 
-                {/* Card Container */}
-                <div className="relative w-[600px] h-[400px]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentCardIndex}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="absolute inset-0"
-                    >
-                      <TiltedCard
-                        imageSrc={tiltedCardData[currentCardIndex].imageSrc}
-                        altText={tiltedCardData[currentCardIndex].altText}
-                        containerHeight="400px"
-                        containerWidth="600px"
-                        imageHeight="400px"
-                        imageWidth="600px"
-                        rotateAmplitude={10}
-                        scaleOnHover={1.05}
-                        showMobileWarning={false}
-                        showTooltip={false}
-                        displayOverlayContent={true}
-                        overlayContent={
-                          <p className="tilted-card-demo-text">
-                            {tiltedCardData[currentCardIndex].overlayText}
-                          </p>
-                        }
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Right Navigation Button */}
-                <motion.button
-                  onClick={goToNextCard}
-                  className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </motion.button>
-              </div>
-
-              {/* Card Indicators - Below the card */}
-              <div
-                className="flex gap-2 justify-center mt-6"
-                style={{ marginLeft: "46px", width: "600px" }}
+          {/* Card Container */}
+          <div className="relative w-[600px] h-[400px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentCardIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute inset-0"
               >
-                {tiltedCardData.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentCardIndex(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === currentCardIndex
-                        ? "bg-white w-6"
-                        : "bg-zinc-600 hover:bg-zinc-500 w-2"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* CardSwap container - needs relative parent for absolute positioning */}
-            <div className="relative w-[600px] h-[400px]">
-              <CardSwap
-                width={600}
-                height={400}
-                delay={4000}
-                pauseOnHover={true}
-                cardDistance={40}
-                verticalDistance={50}
-                skewAmount={4}
-                onCardClick={(index: number) => console.log(`Card ${index} clicked`)}
-              >
-                <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Contrarian Analysis</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Modern LLMs conform to their user&apos;s thoughts. We create intelligence
-                      that dares to think contrarian and radically.
+                <TiltedCard
+                  imageSrc={tiltedCardData[currentCardIndex].imageSrc}
+                  altText={tiltedCardData[currentCardIndex].altText}
+                  containerHeight="400px"
+                  containerWidth="600px"
+                  imageHeight="400px"
+                  imageWidth="600px"
+                  rotateAmplitude={10}
+                  scaleOnHover={1.05}
+                  showMobileWarning={false}
+                  showTooltip={false}
+                  displayOverlayContent={true}
+                  overlayContent={
+                    <p className="tilted-card-demo-text">
+                      {tiltedCardData[currentCardIndex].overlayText}
                     </p>
-                  </div>
-                  <p className="text-blue-400 text-sm font-medium mt-6">Challenge assumptions →</p>
-                </div>
-
-                <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Historical Wisdom</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Learn from the greatest minds in history. From Alexander to Jung, access
-                      timeless insights for modern challenges.
-                    </p>
-                  </div>
-                  <p className="text-blue-400 text-sm font-medium mt-6">Explore the past →</p>
-                </div>
-
-                <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Deep Introspection</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Who looks outside, dreams; who looks inside, awakes. Discover insights
-                      about yourself through guided reflection.
-                    </p>
-                  </div>
-                  <p className="text-blue-400 text-sm font-medium mt-6">Look within →</p>
-                </div>
-              </CardSwap>
-            </div>
+                  }
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
+
+          {/* Right Navigation Button */}
+          <motion.button
+            onClick={goToNextCard}
+            className="w-10 h-10 rounded-full bg-black border border-zinc-700 flex items-center justify-center text-white hover:bg-zinc-800 transition-colors"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </motion.button>
         </div>
+
+        {/* Card Indicators - Below the card */}
+        <div
+          className="flex gap-2 justify-center mt-6"
+          style={{ marginLeft: "46px", width: "600px" }}
+        >
+          {tiltedCardData.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentCardIndex(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentCardIndex
+                  ? "bg-white w-6"
+                  : "bg-zinc-600 hover:bg-zinc-500 w-2"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* CardSwap container (breaks out to the right while TiltedCard stays aligned) */}
+      <div className="relative w-[500px] h-[300px] ml-auto">
+        <CardSwap
+          width={500}
+          height={300}
+          delay={4000}
+          pauseOnHover={true}
+          cardDistance={40}
+          verticalDistance={50}
+          skewAmount={4}
+          onCardClick={(index: number) => console.log(`Card ${index} clicked`)}
+        >
+          <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-4">Contrarian Analysis</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Modern LLMs conform to their user&apos;s thoughts. We create intelligence
+                that dares to think contrarian and radically.
+              </p>
+            </div>
+            <p className="text-blue-400 text-sm font-medium mt-6">Challenge assumptions →</p>
+          </div>
+
+          <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-4">Historical Wisdom</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Learn from the greatest minds in history. From Alexander to Jung, access
+                timeless insights for modern challenges.
+              </p>
+            </div>
+            <p className="text-blue-400 text-sm font-medium mt-6">Explore the past →</p>
+          </div>
+
+          <div className="card !bg-zinc-900 !border-zinc-700 p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-4">Deep Introspection</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Who looks outside, dreams; who looks inside, awakes. Discover insights
+                about yourself through guided reflection.
+              </p>
+            </div>
+            <p className="text-blue-400 text-sm font-medium mt-6">Look within →</p>
+          </div>
+        </CardSwap>
+      </div>
+    </div>
+  </div>
+        </div>
+
       </section>
 
 
@@ -484,7 +487,7 @@ export default function Home() {
       </section>
 
        {/* Section 5: Technology */}
-      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
+      <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-zinc-900 to-black pb-48 pt-32">Tristé Noelle Lieteau
        {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -580,11 +583,6 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Thin separator line */}
-          <div className="flex justify-center mt-12 px-8 lg:px-32">
-            <div className="w-full max-w-4xl h-px bg-zinc-800" />
-          </div>
-
           {/* Bottom two sections - smaller with spacing like Your Advantage cards */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -593,57 +591,227 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="flex justify-center px-8 lg:px-32 py-12"
           >
-            <div className="flex flex-col md:flex-row gap-8 max-w-4xl w-full relative">
-              {/* Left section */}
-              <div className="flex-1 py-6 pr-6">
+
+          <div className="relative max-w-4xl w-full">
+            {/* Thin separator line (now part of this block so the vertical divider can reach it) */}
+            <div className="w-full h-px bg-zinc-800" />
+
+            {/* Vertical separator line (extends up to the thin separator line) */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-zinc-800" />
+
+            {/* Two columns */}
+            <div className="pt-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+              {/* LEFT: Knowledge Graphs */}
+              <div className="py-6 pr-0 md:pr-6">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                  Self-driving introspection
+                  Personal Knowledge Graphs
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                  Streamline your personal development workflows with AI assistance for routine reflection tasks. Get intelligent suggestions based on your patterns and goals.
+                  Your conversations become structured, queryable memory—nodes, edges, and evolving hypotheses you can inspect and refine.
+                  Click the graph to open a live snapshot.
                 </p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-xs text-zinc-400">
-                    <span className="text-zinc-600">✦</span>
-                    <span>Triage Intelligence</span>
+
+                {/* Clickable knowledge graph preview (smooth open/close) */}
+                <details className="group relative">
+                  <summary className="list-none cursor-pointer select-none">
+                    <div className="relative overflow-hidden rounded-lg bg-zinc-950/50 border border-zinc-800/50">
+                      <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-zinc-800/50">
+                        <span className="text-xs text-zinc-600">Knowledge Graph</span>
+                        <span className="text-xs text-zinc-500">
+                          <span className="group-open:hidden">Click to inspect →</span>
+                          <span className="hidden group-open:inline">Click to close ✕</span>
+                        </span>
+                      </div>
+
+                      <div className="p-4">
+                        <Image
+                          src="/images/Knowledge-graph.svg"
+                          alt="Knowledge graph"
+                          width={900}
+                          height={520}
+                          className="w-full h-auto rounded-md opacity-90"
+                        />
+                      </div>
+                    </div>
+                  </summary>
+
+                  {/* Page-level overlay + animated floating card (less snappy) */}
+                  <div className="fixed inset-0 z-[80] pointer-events-none">
+                    {/* Dim background (fades in/out) */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ease-out group-open:opacity-100" />
+
+                    {/* Floating "Graph snapshot" card: left of center, slightly below center */}
+                    <div
+                      className="
+                        absolute left-[10%] top-[56%] w-[min(520px,88vw)]
+                        pointer-events-auto
+                        opacity-0 translate-y-4 scale-[0.98]
+                        transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+                        group-open:opacity-100 group-open:translate-y-0 group-open:scale-100
+                      "
+                    >
+                      <div className="rounded-2xl border border-zinc-800 bg-zinc-950/90 backdrop-blur-md shadow-2xl shadow-black/40 overflow-hidden">
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800/60">
+                          <div className="flex items-center gap-2">
+                            <span className="text-zinc-600">✦</span>
+                            <span className="text-xs text-zinc-200">Graph snapshot</span>
+                          </div>
+                          <span className="text-[11px] text-zinc-500 font-mono">user_id: 7f3a2c</span>
+                        </div>
+
+                        <div className="p-4 space-y-3">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs text-zinc-600">entities</span>
+                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">curiosity</span>
+                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">writing</span>
+                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">consistency</span>
+                            <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-300">time_fear</span>
+                          </div>
+
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs text-zinc-600">active_threads</span>
+                            <span className="text-xs text-blue-400/80">identity → habits → meaning</span>
+                          </div>
+
+                          {/* Colored "code" panel */}
+                          <div className="rounded-xl border border-zinc-800/60 overflow-hidden bg-gradient-to-b from-zinc-950 to-black">
+                            <div className="px-4 py-2 border-b border-zinc-800/60 flex items-center justify-between">
+                              <span className="text-xs text-zinc-500 font-mono">// graph.query</span>
+                              <span className="text-[11px] text-emerald-400/70 font-mono">ok</span>
+                            </div>
+
+                            <pre className="p-4 text-sm overflow-x-auto">
+                              <code className="font-mono whitespace-pre">
+                                <span className="text-zinc-500">{`{`}</span>
+                                {"\n"}
+                                <span className="text-sky-400">{`  "user_id"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"7f3a2c"`}</span>
+                                <span className="text-zinc-500">{`,`}</span>
+                                {"\n"}
+                                <span className="text-sky-400">{`  "nodes"`}</span>
+                                <span className="text-zinc-500">{`: [`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`    { `}</span>
+                                <span className="text-sky-400">{`"type"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"trait"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"id"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"curiosity"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"weight"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-emerald-300">{`0.82`}</span>
+                                <span className="text-zinc-500">{` }`}</span>
+                                <span className="text-zinc-500">{`,`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`    { `}</span>
+                                <span className="text-sky-400">{`"type"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"goal"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"id"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"write_daily"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"weight"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-emerald-300">{`0.66`}</span>
+                                <span className="text-zinc-500">{` }`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`  ],`}</span>
+                                {"\n"}
+                                <span className="text-sky-400">{`  "edges"`}</span>
+                                <span className="text-zinc-500">{`: [`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`    { `}</span>
+                                <span className="text-sky-400">{`"from"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"curiosity"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"to"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-amber-300">{`"write_daily"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-sky-400">{`"relation"`}</span>
+                                <span className="text-zinc-500">{`: `}</span>
+                                <span className="text-purple-300">{`"supports"`}</span>
+                                <span className="text-zinc-500">{` }`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`  ],`}</span>
+                                {"\n"}
+                                <span className="text-sky-400">{`  "short_term_memories"`}</span>
+                                <span className="text-zinc-500">{`: [`}</span>
+                                <span className="text-amber-300">{`"wants more consistency"`}</span>
+                                <span className="text-zinc-500">{`, `}</span>
+                                <span className="text-amber-300">{`"prefers deep work"`}</span>
+                                <span className="text-zinc-500">{`],`}</span>
+                                {"\n"}
+                                <span className="text-sky-400">{`  "suggestions"`}</span>
+                                <span className="text-zinc-500">{`: [`}</span>
+                                {"\n"}
+                                <span className="text-amber-300">{`    "Pin 1 daily reflection node",`}</span>
+                                {"\n"}
+                                <span className="text-amber-300">{`    "Auto-link repeated themes across weeks"`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`  ]`}</span>
+                                {"\n"}
+                                <span className="text-zinc-500">{`}`}</span>
+                              </code>
+                            </pre>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="text-xs text-zinc-600">confidence</span>
+                            <span className="text-xs text-zinc-300">0.78</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Hint row */}
+                      <div className="mt-2 text-[11px] text-zinc-500">
+                        Tip: this snapshot is auto-generated from your recent conversations.
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-zinc-600">Suggestions</span>
-                    <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-400">nan</span>
-                    <span className="px-2 py-1 bg-zinc-900 rounded text-xs text-zinc-400">Growth Path</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs text-zinc-600">Related to</span>
-                    <span className="text-xs text-blue-500/70">Why this guide was suggested</span>
-                  </div>
-                </div>
+                </details>
               </div>
 
-              {/* Vertical separator line */}
-              <div className="hidden md:block w-px bg-zinc-800 self-stretch" />
-
-              {/* Right section */}
-              <div className="flex-1 py-6 pl-6">
+              {/* RIGHT: Multimodality */}
+              <div className="py-6 pl-0 md:pl-6">
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                  Journey MCP
+                  Multimodal Understanding
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
-                  Connect Journey to your favorite tools including Cursor, Claude, ChatGPT, and more for seamless integration.
+                  Images and text work together—summaries, reasoning, and retrieval grounded in what you show and what you say.
+                  The model keeps context across modalities so your workflow feels continuous.
                 </p>
+
+                {/* Chat modal image + gradient (no MCP block) */}
                 <div className="relative overflow-hidden rounded-lg bg-zinc-950/50 border border-zinc-800/50">
-                  <div className="flex items-center gap-2 px-4 py-2 border-b border-zinc-800/50">
-                    <span className="text-xs text-zinc-600 font-mono">//mcp.journey.app/sse</span>
+                  <div className="relative">
+                    <Image
+                      src="/images/chat-modal.png"
+                      alt="Chat modal"
+                      width={900}
+                      height={520}
+                      className="w-full h-auto opacity-95"
+                    />
+
+                    {/* Gradient applied to the right side of the chat modal */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-black/70 via-black/20 to-transparent" />
+                    {/* Subtle bottom fade */}
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
                   </div>
-                  <pre className="p-4 text-sm overflow-x-auto">
-                    <code className="text-zinc-500 font-mono whitespace-pre">{`"mcpServers": {
-  "journey": {
-    "command": "npx"
-  }
-}`}</code>
-                  </pre>
                 </div>
               </div>
             </div>
+          </div>
+
+
+
           </motion.div>
       </section>
 
@@ -659,7 +827,7 @@ export default function Home() {
       </section>
 
       {/* Section 7: CTA */}
-      <section className="bg-relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
+      <section className="bg-relative pb-48 flex items-center justify-center overflow-hidden bg-black">
 
       <div className="relative w-[60%] h-[400px] rounded-3xl overflow-hidden">        
         <div className="absolute inset-0 z-0 ">
